@@ -1,10 +1,9 @@
 ; AHK V1.1 64-bit
+#SingleInstance, Force	; Reloading the script will replace the previous running script without a prompt.
+SendMode, Input		; For anything using Send, Input is a preferred method because of its superior speed and reliability.
+SetBatchLines, -1	; Make the script run at maximum speed. If you need the script to use less CPU, remove this or comment it out.
 
-#SingleInstance, Force				; Reloading the script will replace the previous running script without a prompt.
-SendMode, Input					; For anything using Send, Input is a preferred method because of its superior speed and reliability.
-SetBatchLines, -1				; Make the script run at maximum speed. If you need the script to use less CPU, remove this or comment it out.
-
-Clicked(){ ; Not in order, but that doesn't matter.
+Clicked(){		; Not in the same order as the gui, but that doesn't matter.
 	Switch RegExReplace(A_GuiControl, "\s") {
 		case "SystemProperties":	Run, sysdm.cpl
 		case "ComputerManagement":	Run, compmgmt.msc
@@ -54,46 +53,46 @@ Clicked(){ ; Not in order, but that doesn't matter.
 	return
 }
 
-; Would normally make this an associative array, but it doesn't preserve the order of the array. Using linear array of data pairs to accomplish this.
+; Would normally make this an associative array, but that doesn't preserve the order of the array. Using linear array of data pairs instead to accomplish this.
 GuiNameIcon :=	[["Computer Management",	"mmc.exe"]
-				,["System Properties",		"sysdm.cpl"]
-				,["User Profiles",		"Netplwiz.exe"]
-				,["Programs",			"OptionalFeatures.exe"]
+		,["System Properties",		"sysdm.cpl"]
+		,["User Profiles",		"Netplwiz.exe"]
+		,["Programs",			"OptionalFeatures.exe"]
 
-				,["System Info",		"msinfo32.exe"]
-				,["Domain and Name",		"sysdm.cpl"]
-				,["User Accounts",		"Netplwiz.exe"]
-				,["Network Connections",	"ncpa.cpl"]
+		,["System Info",		"msinfo32.exe"]
+		,["Domain and Name",		"sysdm.cpl"]
+		,["User Accounts",		"Netplwiz.exe"]
+		,["Network Connections",	"ncpa.cpl"]
 
-				,["System Configuration",	"msconfig.exe"]
-				,["Performance Options",	"SystemPropertiesPerformance.exe"]
-				,["Power Options",		"powercfg.cpl"]
-				,["Explorer Printers",		"printui.exe"]
+		,["System Configuration",	"msconfig.exe"]
+		,["Performance Options",	"SystemPropertiesPerformance.exe"]
+		,["Power Options",		"powercfg.cpl"]
+		,["Explorer Printers",		"printui.exe"]
 
-				,["Startup Menu",		"explorer.exe"]
-				,["Display Properties",		"sysdm.cpl"]
-				,["Power Button",		"powercfg.cpl"]
-				,["Control Printers",		"printui.exe"]
+		,["Startup Menu",		"explorer.exe"]
+		,["Display Properties",		"sysdm.cpl"]
+		,["Power Button",		"powercfg.cpl"]
+		,["Control Printers",		"printui.exe"]
 
-				,["Common Startup Apps",	"explorer.exe"]
-				,["Time and Date",		"timedate.cpl"]
-				,["Device Manager",		"hdwwiz.cpl"]
-				,["Mouse Speed",		"main.cpl"]
-				
-				,["Your Startup Apps",		"explorer.exe"]
-				,["File Explorer Options",	"explorer.exe"]
-				,["User Account Control",	"UserAccountControlSettings.exe"]
-				,["Check for updates",		"MusNotifyIcon.exe"]
+		,["Common Startup Apps",	"explorer.exe"]
+		,["Time and Date",		"timedate.cpl"]
+		,["Device Manager",		"hdwwiz.cpl"]
+		,["Mouse Speed",		"main.cpl"]
+		
+		,["Your Startup Apps",		"explorer.exe"]
+		,["File Explorer Options",	"explorer.exe"]
+		,["User Account Control",	"UserAccountControlSettings.exe"]
+		,["Check for updates",		"MusNotifyIcon.exe"]
 
-				,["Windows Features",		"OptionalFeatures.exe"]
-				,["Map Network Drive",		"ncpa.cpl"]
-				,["Sound Panel",		"mmsys.cpl"]
-				,["Control Panel",		"control.exe"]
+		,["Windows Features",		"OptionalFeatures.exe"]
+		,["Map Network Drive",		"ncpa.cpl"]
+		,["Sound Panel",		"mmsys.cpl"]
+		,["Control Panel",		"control.exe"]
 
-				,["Registry Editor",		"regedit.exe"]
-				,["Print Management",		"printui.exe"]
-				,["Disk Cleanup",		"cleanmgr.exe"]
-				,["Services",			"SystemSettingsBroker.exe"]]
+		,["Registry Editor",		"regedit.exe"]
+		,["Print Management",		"printui.exe"]
+		,["Disk Cleanup",		"cleanmgr.exe"]
+		,["Services",			"SystemSettingsBroker.exe"]]
 
 Gui, Font, s10 cWhite, Arial
 Gui, Color, Black
@@ -107,5 +106,4 @@ Gui, Show,, Quick Admin
 return
 
 GuiClose:
-	ExitApp
-return
+ExitApp
